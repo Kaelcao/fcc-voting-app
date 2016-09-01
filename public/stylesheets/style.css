@@ -1,0 +1,17 @@
+body {
+    padding: 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.lead {
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+.wrapper {
+    text-align: center;
+}
