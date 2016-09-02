@@ -12,7 +12,7 @@ require('dotenv').config();
 require('./config/db');
 require('./config/passport');
 
-var routes = require('./routes/index');
+
 var users = require('./routes/users');
 
 var app = express();
@@ -31,13 +31,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(session({secret: process.env.SESSION_SECRET}));
-app.use(session({ secret: 'keyboard cat' }));
+app.use(session({secret: 'keyboard cat'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+var routes = require('./routes/index');
+var pollRoutes = require('./routes/pollRoutes');
+
 app.use('/', routes);
 app.use('/users', users);
+app.use('/poll', pollRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

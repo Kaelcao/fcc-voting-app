@@ -9,10 +9,9 @@ block content
             h4 Polls
             .row
                 .list-group
-                    a.list-group-item(href="#") Cras justo odio
-                    a.list-group-item(href="#") Cras justo odio
-                    a.list-group-item(href="#") Cras justo odio
-                    a.list-group-item(href="#") Cras justo odio
+                    - each poll in polls
+                        a.list-group-item(href="#")=poll.title
+
 
 
 

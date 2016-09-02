@@ -14,13 +14,15 @@ html
                         span.icon-bar
                         span.icon-bar
                         span.icon-bar
-                    a.navbar-brand(href='#') Brand
+                    a.navbar-brand(href='/') fcc voting app
                 // Collect the nav links, forms, and other content for toggling
                 #bs-example-navbar-collapse-1.collapse.navbar-collapse
                     ul.nav.navbar-nav.navbar-right
-                        li(class=currentPage=="home"?"active":undefined)
+                        li(class=currentPage == "home" ? "active" : undefined)
                             a(href='/') Home
                         if user
+                            li(class=currentPage == "newpoll" ? "active" : undefined)
+                                a(href='/poll/new') Make a new Poll
                             li.dropdown
                                 a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                                     | #{user.name}

@@ -13,6 +13,7 @@ router.route('/signup')
     .get(authCtrl.signUp)
     .post(authCtrl.createUser);
 
+router.get('/signout',authCtrl.signOut);
 router.get('/signin', authMiddleware.preventloggedUser, authCtrl.signIn);
 router.route('/signin')
     .post(
