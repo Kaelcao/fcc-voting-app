@@ -1,0 +1,60 @@
+extends layout
+
+block content
+    .container.well.well-lg
+        .col-md-4
+            h3=poll.title
+            div
+                if errors && errors.length > 0
+                    .alert.alert-danger
+                        - each error in errors
+                            p=error
+                form(method='post')
+                    .form-group
+                        label(for='options') I'd like to vote for...:
+                        select#options.form-control(name="options")
+                            - each option in poll.options
+                                option(value=option)=option
+                    input.btn.btn-primary(type='submit',style="width:100%")
+            if user
+                form(method="post",action="/poll/custom",style="margin-top:10px")
+                    .form-group
+                        label(for="custom") I want a custom option:
+                        input.form-control#custom(type="text",name='custom')
+                        input(type="hidden",value=poll._id,name="id")
+                        input.btn.btn-default(type='submit',style="width:100%")
+                a.btn.btn-danger(href="/poll/" + poll._id + "/delete",style="width:100%;margin-top:5px") delete
+        .col-md-8
+            canvas#votes-chart
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js')
+    script.
+        var ctx = document.getElementById("votes-chart");
+        var data = {
+            labels: !{JSON.stringify(poll.options)},
+            datasets: [
+                {
+                    data: !{JSON.stringify(poll.votes)},
+                    backgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ]
+                }]
+        };
+        // And for a doughnut chart
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: options
+        });
+
+
+
+
+

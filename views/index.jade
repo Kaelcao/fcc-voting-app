@@ -3,14 +3,14 @@ extends layout
 block content
     .container.wrapper
         .well.well-lg
-            h1 fcc-voting
+            h1=title
             .lead Select a poll to see the results and vote,
-                a or make a new poll!
+                a(href="/poll/new") or make a new poll!
             h4 Polls
             .row
                 .list-group
                     - each poll in polls
-                        a.list-group-item(href="#")=poll.title
+                        a.list-group-item(href="/poll/" + poll._id)=poll.title
 
 
 

@@ -5,7 +5,13 @@ var pollSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    options: [String]
+    options: [String],
+    votes: [Number],
+    voters: [String],
+    userId: {
+        type: mongoose.Schema.ObjectId,
+        required: true
+    }
 }, {
     timestamps: true
 });

@@ -23,6 +23,8 @@ html
                         if user
                             li(class=currentPage == "newpoll" ? "active" : undefined)
                                 a(href='/poll/new') Make a new Poll
+                            li(class=currentPage == "mypolls" ? "active" : undefined)
+                                a(href='/mypoll') My Polls
                             li.dropdown
                                 a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                                     | #{user.name}

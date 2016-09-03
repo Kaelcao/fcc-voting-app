@@ -7,7 +7,7 @@ var authMiddleware = require('../middlewares/auth');
 
 /* GET home page. */
 router.get('/', homeCtrl.home);
-
+router.get('/mypoll',authMiddleware.isLoggedIn,homeCtrl.myPoll);
 
 router.route('/signup')
     .get(authCtrl.signUp)
