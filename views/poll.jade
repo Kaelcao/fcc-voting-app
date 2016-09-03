@@ -29,22 +29,24 @@ block content
 
     script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js')
     script.
+        var labels = !{JSON.stringify(poll.options)};
+        var colors = [];
+        for (var i = 0; i < labels.length; i++) {
+            var rgb = [];
+
+            for (var j = 0; j < 3; j++)
+                rgb.push(Math.floor(Math.random() * 255));
+
+            colors.push('rgb(' + rgb.join(',') + ')');
+        }
         var ctx = document.getElementById("votes-chart");
         var data = {
-            labels: !{JSON.stringify(poll.options)},
+            labels: labels,
             datasets: [
                 {
                     data: !{JSON.stringify(poll.votes)},
-                    backgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ],
-                    hoverBackgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ]
+                    backgroundColor: colors,
+                    hoverBackgroundColor: colors
                 }]
         };
         // And for a doughnut chart
